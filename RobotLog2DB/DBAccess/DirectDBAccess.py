@@ -1,4 +1,4 @@
-#  Copyright 2020-2023 Robert Bosch GmbH
+#  Copyright 2020-2024 Robert Bosch GmbH
 #
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -13,11 +13,11 @@
 #  limitations under the License.
 # *******************************************************************************
 #
-# File: CDataBase.py
+# File: DirectDBAccess.py
 #
 # Initialy created by Pollerspoeck Thomas (CM/PJ-CMD) / June 2016
 #
-# This class provides methods to interact with TestResultWebApp's database.
+# This class provides methods to interact with TestResultWebApp's database directly.
 #
 # History:
 #
@@ -26,25 +26,28 @@
 #
 # February 2022:
 #  - update sourcecode document
+# 
+# March 2024:
+#  - rename file to DirectDBAccess due to DB interface feature of RobotLog2DB
 #
 # *******************************************************************************
 
 import MySQLdb as db
 
-class CDataBase(object):
+class DirectDBAccess(object):
    """
-CDataBase class play a role as mysqlclient and provide methods to interact
+DirectDBAccess class play a role as mysqlclient and provide methods to interact
 with TestResultWebApp's database.
    """
    __single = None
 
    __NUM_BUFFERD_ELEMENTS_FOR_EXECUTEMANY=100
 
-   #make the CDataBase to singleton
+   #make the DirectDBAccess to singleton
    #! __new__ requires inheritance from "object" !
    def __new__(classtype, *args, **kwargs):
       """
-Create object method to make singleton class ``CDataBase``.
+Create object method to make singleton class ``DirectDBAccess``.
       """
       # Check to see if a __single exists already for this class
       # Compare class types instead of just looking for None so
@@ -55,7 +58,7 @@ Create object method to make singleton class ``CDataBase``.
 
    def __init__(self):
       """
-Initializer of class ``CDataBase``.
+Initializer of class ``DirectDBAccess``.
       """
       con      = None
       db       = None
@@ -128,6 +131,20 @@ Connect to the database with provided authentication and db info.
       #for test purpose activate autocommit with (True)
       self.con.autocommit(False)
       print("Successfully connected to: %s@%s" % (self.db, host))
+
+   def commit(self):
+      """
+Commit changes within transaction. 
+
+**Arguments:**
+
+(*no arguments*)
+
+**Returns:**
+
+(*no returns*)
+      """
+      self.con.commit()
 
    def disconnect(self):
       """
@@ -1059,7 +1076,7 @@ Once ``__NUM_BUFFERD_ELEMENTS_FOR_EXECUTEMANY`` is reached, the creation query i
                 _tbl_case_lastlog,
                 )
       self.lTestCases.append(sqlval)
-      if len(self.lTestCases) >= CDataBase.__NUM_BUFFERD_ELEMENTS_FOR_EXECUTEMANY:
+      if len(self.lTestCases) >= DirectDBAccess.__NUM_BUFFERD_ELEMENTS_FOR_EXECUTEMANY:
          self.vEnableForeignKeyCheck(False)
          self.__vUploadTestCaseListToDb(self.lTestCases)
          self.vEnableForeignKeyCheck(True)
