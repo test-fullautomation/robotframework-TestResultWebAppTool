@@ -49,7 +49,7 @@
                              ],
                    "0.11." : [
 "
-Support the new log level *USER* of Robotframework
+Support added for new Robot Framework log level ``USER``
 "
                              ]
                  }
