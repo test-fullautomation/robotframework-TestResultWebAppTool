@@ -52,7 +52,7 @@ import json
 
 from lxml import etree
 from robot.api import ExecutionResult
-from RobotLog2DB.DBAccessFactory import DBAccessFactory
+from TestResultDBAccess import DBAccessFactory
 from RobotLog2DB.version import VERSION, VERSION_DATE
 
 DRESULT_MAPPING = {

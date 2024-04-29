@@ -51,6 +51,25 @@
 "
 Support added for new Robot Framework log level ``USER``
 "
+                             ],
+                   "0.12." : [
+"
+Introduce new feature to switch the access interface to TestResult's database
+   
+* Add supported new interface to database **REST API Access**. 
+
+  This interface helps to import test result data to the secured server 
+  which is not allowed to interact directly with the database.
+
+* Add new optional argument ``--interface`` which allow to switch between
+  available interfaces (currently only direct access).
+  Its value can be:
+
+  * ``db`` (default value): use direct access to TestResult's database.
+  * ``rest``: use REST API Access to TestResult's database (new access)
+
+* This change is transparent to end user.
+"
                              ]
                  }
 }

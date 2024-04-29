@@ -133,6 +133,8 @@ The usage should be showed as below:
    --variant VARIANT    variant name to be set for this import.
    --versions VERSIONS  metadata: Versions (Software;Hardware;Test) to be set for this import (semicolon separated).
    --config CONFIG      configuration json file for component mapping information.
+   --interface {db,rest}
+                        database access interface.
 
 
 The below command is simple usage with all required arguments to import
