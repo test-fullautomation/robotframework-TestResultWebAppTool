@@ -228,6 +228,8 @@ optional arguments:
 --versions VERSIONS  metadata: Versions (Software;Hardware;Test) to be set for
                      this import (semicolon separated).
 --config CONFIG      configuration json file for component mapping information.
+--interface {db,rest} 
+                     database access interface.
 \end{robotlog}
 
     As above instruction, \pkg\ tool requires 5 positional arguments which
@@ -513,6 +515,46 @@ FATAL ERROR: '--append' argument should be used in combination with '--UUID <UUI
 FATAL ERROR: Given version software 'my_version' is different with existing value 'SW01' in database.
 \end{robotlog}
     \end{boxhint}
+
+  \subsection{Switch Database Access Interface}\label{switch-database-access-interface}
+  In addition to direct database connections — which can sometimes be restricted 
+  or prohibited due to security concerns — the \pkg\ tool also provides users 
+  with an alternative way (interface) to import test data into the database, 
+  namely the REST API.
+
+  \rlog{--interface INTERFACE}: An optional argument to specify the database backend interface. 
+  The default value is \rlog{db} (direct connection to MySQL database). 
+  It can also be set to \rlog{rest} to import data into the database via a REST API.
+
+    \subsubsection{Direct Connection Backend (interface="db")}
+    The default mode of operation for the import tool is the direct connection to the MySQL database. 
+    This means that when you run the tool without specifying the \rlog{--interface} option, 
+    it automatically uses the \rlog{db} interface, establishing a direct connection to the MySQL database.
+
+    You can also explicitly specify the \rlog{db} interface by using the \rlog{--interface} 
+    option with the value \rlog{db}. 
+
+\begin{robotlog}
+  RobotLog2DB <output.xml> <db\_host> <db\_user> <db\_password> <db\_name> --interface db
+\end{robotlog}
+
+    This method provides flexibility, allowing users to choose between interfaces explicitly 
+    or rely on the default behavior.
+
+    \subsubsection{REST API Backend (interface="rest")}
+    The 'rest' interface allows users to import data into the database through a REST API. 
+    This mode is particularly useful in scenarios where direct database connections are restricted 
+    or not feasible, such as when the database is secured and direct connections are not allowed.
+
+\begin{robotlog}
+  RobotLog2DB <output.xml> <api\_endpoint> <api\_user> <api\_password> <db\_name> --interface rest
+\end{robotlog}
+
+\begin{boxhint} {Additional Notes}
+  This feature offers easy switching between database backends, making it transparent and convenient for end-users.
+  
+  When using the REST API interface, ensure that you have the necessary credentials and permissions to access the REST API endpoints.
+\end{boxhint}
 
 \newpage
 \hypertarget{description-display-on-webapp}{%

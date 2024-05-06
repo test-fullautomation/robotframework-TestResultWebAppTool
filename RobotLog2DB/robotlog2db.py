@@ -52,7 +52,7 @@ import json
 
 from lxml import etree
 from robot.api import ExecutionResult
-from RobotLog2DB.CDataBase import CDataBase
+from TestResultDBAccess import DBAccessFactory
 from RobotLog2DB.version import VERSION, VERSION_DATE
 
 DRESULT_MAPPING = {
@@ -688,6 +688,7 @@ Avalable arguments in command line:
                            help='metadata: Versions (Software;Hardware;Test) to be set for this import (semicolon separated).')
    cmdParser.add_argument('--config', type=str,
                            help='configuration json file for component mapping information.')
+   cmdParser.add_argument('--interface', choices=['db', 'rest'], default='db', help='database access interface.')
 
    return cmdParser.parse_args()
 
@@ -1029,7 +1030,7 @@ Process test case data and create new test case record.
    _tbl_case_result_return  = 11
    _tbl_case_counter_resets = 0
    try:
-      _tbl_case_lastlog = base64.b64encode(test.message.encode())
+      _tbl_case_lastlog = str(base64.b64encode(test.message.encode()), encoding="utf-8")
    except:
       _tbl_case_lastlog = None
    _tbl_test_result_id = test_result_id
@@ -1229,7 +1230,7 @@ Flow to import Robot results to database:
                           fatal_error=True)
 
    # 3. Connect to database
-   db=CDataBase()
+   db = DBAccessFactory().create(args.interface)
    try:
       db.connect(args.server,
                  args.user,
