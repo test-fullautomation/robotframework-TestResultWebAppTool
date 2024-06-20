@@ -52,7 +52,7 @@
 Support added for new Robot Framework log level ``USER``
 "
                              ],
-                   "0.12." : [
+                   "0.12.0.;0.13.0." : [
 "
 Introduce new feature to switch the access interface to TestResult's database
    
