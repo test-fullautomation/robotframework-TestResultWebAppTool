@@ -58,7 +58,8 @@ from RobotLog2DB.version import VERSION, VERSION_DATE
 DRESULT_MAPPING = {
    "PASS":  "Passed",
    "FAIL":  "Failed",
-   "UNKNOWN": "Unknown"
+   "UNKNOWN": "Unknown",
+   "SKIP": "Unknown"
 }
 
 DEFAULT_METADATA = {
@@ -1024,8 +1025,10 @@ Process test case data and create new test case record.
    try:
       _tbl_case_result_main = DRESULT_MAPPING[test.status]
    except Exception:
-      Logger.log_error(f"Invalid Robotframework result state '{test.status}' of test '{_tbl_case_name}'.")
-      return
+      # Robotframework result's validation is done before
+      # Set further status as unknown
+      _tbl_case_result_main = DRESULT_MAPPING['UNKNOWN']
+
    _tbl_case_result_state   = "complete"
    _tbl_case_result_return  = 11
    _tbl_case_counter_resets = 0
