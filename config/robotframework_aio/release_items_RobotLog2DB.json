@@ -75,6 +75,11 @@ Introduce new feature to switch the access interface to TestResult's database
 "
 * Fixed issue when importing test case with **SKIP** status
 "
-                             ]
+                             ],
+                    "0.13.0." : [
+"
+Add new optional argument ``--testrunurl`` to specify a link to test execution job, such as Jenkins or Gitlab CI/CD
+"
+                    ]
                  }
 }
