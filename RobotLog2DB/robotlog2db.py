@@ -466,7 +466,7 @@ Example:
 
    / *Condition*: required / *Type*: str /
 
-   Regex to get the expectated info (ID) from tag info.
+   Regex to get the expected info (ID) from tag info.
 
 **Returns:**
 
@@ -490,7 +490,7 @@ Get branch name from software version information.
 
 Convention of branch information in suffix of software version:
 
-*  All software version with .0F is the main/freature branch.
+*  All software version with .0F is the main/feature branch.
    The leading number is the current year. E.g. ``17.0F03``
 *  All software version with ``.1S``, ``.2S``, ... is a stabi branch.
    The leading number is the year of branching out for stabilization.
@@ -588,7 +588,7 @@ In case the starttime in given suite is 'N/A', it will try to get this informati
 
 def retrieve_result_endtime(objResult):
    """
-Retrieve endtime infomration from given result object (TestSuite or TestCase).
+Retrieve endtime information from given result object (TestSuite or TestCase).
 In case the endtime in given suite is 'N/A', it will try to get this information from its children suite/test.
 
 **Arguments:**
@@ -827,9 +827,9 @@ Process to the lowest suite level (test file):
       sSuiteStarttime = retrieve_result_starttime(suite)
       sSuiteEndtime   = retrieve_result_endtime(suite)
       if not sSuiteStarttime:
-         Logger.log_error(f"Could not retieve start time of suite '{suite.name}'.")
+         Logger.log_error(f"Could not retrieve start time of suite '{suite.name}'.")
       if not sSuiteEndtime:
-         Logger.log_error(f"Could not retieve end time of suite '{suite.name}'.")
+         Logger.log_error(f"Could not retrieve end time of suite '{suite.name}'.")
       _tbl_file_time_start     = format_time(sSuiteStarttime)
       _tbl_file_time_end       = format_time(sSuiteEndtime)
 
