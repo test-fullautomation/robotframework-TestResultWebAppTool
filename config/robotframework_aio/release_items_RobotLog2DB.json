@@ -80,6 +80,11 @@ Introduce new feature to switch the access interface to TestResult's database
 "
 Add new optional argument ``--testrunurl`` to specify a link to test execution job, such as Jenkins or Gitlab CI/CD
 "
+                    ],
+                    "0.13.1." : [
+"
+Add support for latest version of robotframework result file - v7.x.x
+"
                     ]
                  }
 }
