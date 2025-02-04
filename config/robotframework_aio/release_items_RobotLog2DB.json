@@ -20,12 +20,12 @@
 #
 # Basically this component is stand-alone, but can also be used as part of an automation framework called
 # RobotFramework AIO. More information about this framework you can find here:
-# 
+#
 # https://github.com/test-fullautomation/RobotFramework_AIO
-# 
+#
 # This JSON file contains component specific release information for the RobotFramework AIO.
 # In case you use the component stand-alone only, you can ignore this file.
-# 
+#
 # --------------------------------------------------------------------------------------------------------------
 #
 # Format: extended JSON format with the possibility to comment out lines (by '#' at the beginning of the line).
@@ -55,10 +55,10 @@ Support added for new Robot Framework log level ``USER``
                    "0.12.0.;0.13.0." : [
 "
 Introduce new feature to switch the access interface to TestResult's database
-   
-* Add supported new interface to database **REST API Access**. 
 
-  This interface helps to import test result data to the secured server 
+* Add supported new interface to database **REST API Access**.
+
+  This interface helps to import test result data to the secured server
   which is not allowed to interact directly with the database.
 
 * Add new optional argument ``--interface`` which allow to switch between
@@ -84,6 +84,11 @@ Add new optional argument ``--testrunurl`` to specify a link to test execution j
                     "0.13.1." : [
 "
 Add support for latest version of robotframework result file - v7.x.x
+"
+                    ],
+                    "0.13.2." : [
+"
+Add support for robotframework (extended version) result file with thread feature
 "
                     ]
                  }
