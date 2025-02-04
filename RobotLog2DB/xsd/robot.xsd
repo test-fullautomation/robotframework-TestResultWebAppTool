@@ -72,6 +72,7 @@
     <xs:complexType name="Test">
         <xs:choice maxOccurs="unbounded">
             <xs:element name="kw" type="Keyword" minOccurs="0" maxOccurs="unbounded" />
+            <xs:element name="thread" type="Thread" minOccurs="0" maxOccurs="unbounded" />
             <xs:element name="for" type="For" minOccurs="0" maxOccurs="unbounded" />
             <xs:element name="if" type="If" minOccurs="0" maxOccurs="unbounded" />
             <xs:element name="try" type="Try" minOccurs="0" maxOccurs="unbounded" />
@@ -93,6 +94,7 @@
     <xs:complexType name="Keyword">
         <xs:choice maxOccurs="unbounded">
             <xs:element name="kw" type="Keyword" minOccurs="0" maxOccurs="unbounded" />
+            <xs:element name="thread" type="Thread" minOccurs="0" maxOccurs="unbounded" />
             <xs:element name="for" type="For" minOccurs="0" maxOccurs="unbounded" />
             <xs:element name="if" type="If" minOccurs="0" maxOccurs="unbounded" />
             <xs:element name="try" type="Try" minOccurs="0" maxOccurs="unbounded" />
@@ -122,12 +124,22 @@
             <xs:enumeration value="TEARDOWN" />
         </xs:restriction>
     </xs:simpleType>
+    <xs:complexType name="Thread">
+        <xs:choice maxOccurs="unbounded">
+            <xs:element name="kw" type="Keyword" minOccurs="0" maxOccurs="unbounded" />
+            <xs:element name="msg" type="Message" minOccurs="0" maxOccurs="unbounded" />
+            <xs:element name="status" type="Status" />
+        </xs:choice>
+        <xs:attribute name="name" type="xs:string" />
+        <xs:attribute name="daemon" type="xs:string" />
+    </xs:complexType>
     <xs:complexType name="For">
         <xs:choice maxOccurs="unbounded">
             <xs:element name="var" type="xs:string" minOccurs="0" maxOccurs="unbounded" />      <!-- Loop variables -->
             <xs:element name="value" type="xs:string" minOccurs="0" maxOccurs="unbounded" />    <!-- Loop values -->
             <xs:element name="iter" type="ForIteration" minOccurs="0" maxOccurs="unbounded" />
             <xs:element name="kw" type="Keyword" minOccurs="0" maxOccurs="unbounded" />
+            <xs:element name="thread" type="Thread" minOccurs="0" maxOccurs="unbounded" />
             <xs:element name="msg" type="Message" minOccurs="0" maxOccurs="unbounded" />
             <xs:element name="status" type="Status" />
         </xs:choice>
@@ -149,6 +161,7 @@
             <!-- Loop variables with iteration specific values. -->
             <xs:element name="var" type="ForIterationVariable" minOccurs="0" maxOccurs="unbounded" />
             <xs:element name="kw" type="Keyword" minOccurs="0" maxOccurs="unbounded" />
+            <xs:element name="thread" type="Thread" minOccurs="0" maxOccurs="unbounded" />
             <xs:element name="for" type="For" minOccurs="0" maxOccurs="unbounded" />
             <xs:element name="if" type="If" minOccurs="0" maxOccurs="unbounded" />
             <xs:element name="try" type="Try" minOccurs="0" maxOccurs="unbounded" />
@@ -179,6 +192,7 @@
     <xs:complexType name="IfBranch">
         <xs:choice maxOccurs="unbounded">
             <xs:element name="kw" type="Keyword" minOccurs="0" maxOccurs="unbounded" />
+            <xs:element name="thread" type="Thread" minOccurs="0" maxOccurs="unbounded" />
             <xs:element name="for" type="For" minOccurs="0" maxOccurs="unbounded" />
             <xs:element name="if" type="If" minOccurs="0" maxOccurs="unbounded" />
             <xs:element name="try" type="Try" minOccurs="0" maxOccurs="unbounded" />
@@ -212,6 +226,7 @@
         <xs:choice maxOccurs="unbounded">
             <xs:element name="pattern" type="xs:string" minOccurs="0" maxOccurs="unbounded" />
             <xs:element name="kw" type="Keyword" minOccurs="0" maxOccurs="unbounded" />
+            <xs:element name="thread" type="Thread" minOccurs="0" maxOccurs="unbounded" />
             <xs:element name="for" type="For" minOccurs="0" maxOccurs="unbounded" />
             <xs:element name="if" type="If" minOccurs="0" maxOccurs="unbounded" />
             <xs:element name="try" type="Try" minOccurs="0" maxOccurs="unbounded" />
@@ -251,6 +266,7 @@
     <xs:complexType name="WhileIteration">
         <xs:choice maxOccurs="unbounded">
             <xs:element name="kw" type="Keyword" minOccurs="0" maxOccurs="unbounded" />
+            <xs:element name="thread" type="Thread" minOccurs="0" maxOccurs="unbounded" />
             <xs:element name="for" type="For" minOccurs="0" maxOccurs="unbounded" />
             <xs:element name="if" type="If" minOccurs="0" maxOccurs="unbounded" />
             <xs:element name="try" type="Try" minOccurs="0" maxOccurs="unbounded" />
